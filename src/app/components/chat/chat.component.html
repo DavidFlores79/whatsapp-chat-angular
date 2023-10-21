@@ -1,0 +1,731 @@
+<!-- Layout -->
+<div class="layout overflow-hidden">
+    <!-- Navigation -->
+    <nav class="navigation d-flex flex-column text-center navbar navbar-light hide-scrollbar">
+        <!-- Brand -->
+        <a href="index.html" title="Messenger" class="d-none d-xl-block mb-6">
+            <img src="assets/img/whatsapp.png" alt="" style="width: 50px;">
+        </a>
+
+        <!-- Nav items -->
+        <ul class="d-flex nav navbar-nav flex-row flex-xl-column flex-grow-1 justify-content-between justify-content-xl-center align-items-center w-100 py-4 py-lg-2 px-lg-3"
+            role="tablist">
+            <!-- Invisible item to center nav vertically -->
+            <li class="nav-item d-none d-xl-block invisible flex-xl-grow-1">
+                <a class="nav-link py-0 py-lg-8" href="#" title="">
+                    <div class="icon icon-xl">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            class="feather feather-x">
+                            <line x1="18" y1="6" x2="6" y2="18"></line>
+                            <line x1="6" y1="6" x2="18" y2="18"></line>
+                        </svg>
+                    </div>
+                </a>
+            </li>
+
+
+
+            <!-- Chats -->
+            <li class="nav-item">
+                <a class="nav-link active py-0 py-lg-8" id="tab-chats" href="#tab-content-chats" title="Chats"
+                    data-bs-toggle="tab" role="tab">
+                    <div class="icon icon-xl icon-badged">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            class="feather feather-message-square">
+                            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                        </svg>
+                        <div class="badge badge-circle bg-primary">
+                            <span>{{ messages.length }}</span>
+                        </div>
+                    </div>
+                </a>
+            </li>
+
+
+            <!-- Switcher -->
+            <li class="nav-item d-none d-xl-block">
+                <a class="switcher-btn nav-link py-0 py-lg-8" href="#!" title="Themes">
+                    <div class="switcher-icon switcher-icon-dark icon icon-xl d-none" data-theme-mode="dark">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            class="feather feather-moon">
+                            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                        </svg>
+                    </div>
+                    <div class="switcher-icon switcher-icon-light icon icon-xl d-none" data-theme-mode="light">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            class="feather feather-sun">
+                            <circle cx="12" cy="12" r="5"></circle>
+                            <line x1="12" y1="1" x2="12" y2="3"></line>
+                            <line x1="12" y1="21" x2="12" y2="23"></line>
+                            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                            <line x1="1" y1="12" x2="3" y2="12"></line>
+                            <line x1="21" y1="12" x2="23" y2="12"></line>
+                            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                        </svg>
+                    </div>
+                </a>
+            </li>
+
+
+            <!-- Profile -->
+            <li class="nav-item d-none d-xl-block">
+                <a href="#" class="nav-link p-0 mt-lg-2" data-bs-toggle="modal" data-bs-target="#modal-profile">
+                    <div class="avatar avatar-online mx-auto">
+                        <!-- <img class="avatar-img" src="assets/img/avatars/1.jpg" alt=""> -->
+                        <svg viewBox="0 0 212 212" width="50" height="50" class="">
+                            <path fill="#DFE5E7" class="background"
+                                d="M106.251.5C164.653.5 212 47.846 212 106.25S164.653 212 106.25 212C47.846 212 .5 164.654.5 106.25S47.846.5 106.251.5z">
+                            </path>
+                            <g fill="#FFF">
+                                <path class="primary"
+                                    d="M173.561 171.615a62.767 62.767 0 0 0-2.065-2.955 67.7 67.7 0 0 0-2.608-3.299 70.112 70.112 0 0 0-3.184-3.527 71.097 71.097 0 0 0-5.924-5.47 72.458 72.458 0 0 0-10.204-7.026 75.2 75.2 0 0 0-5.98-3.055c-.062-.028-.118-.059-.18-.087-9.792-4.44-22.106-7.529-37.416-7.529s-27.624 3.089-37.416 7.529c-.338.153-.653.318-.985.474a75.37 75.37 0 0 0-6.229 3.298 72.589 72.589 0 0 0-9.15 6.395 71.243 71.243 0 0 0-5.924 5.47 70.064 70.064 0 0 0-3.184 3.527 67.142 67.142 0 0 0-2.609 3.299 63.292 63.292 0 0 0-2.065 2.955 56.33 56.33 0 0 0-1.447 2.324c-.033.056-.073.119-.104.174a47.92 47.92 0 0 0-1.07 1.926c-.559 1.068-.818 1.678-.818 1.678v.398c18.285 17.927 43.322 28.985 70.945 28.985 27.678 0 52.761-11.103 71.055-29.095v-.289s-.619-1.45-1.992-3.778a58.346 58.346 0 0 0-1.446-2.322zM106.002 125.5c2.645 0 5.212-.253 7.68-.737a38.272 38.272 0 0 0 3.624-.896 37.124 37.124 0 0 0 5.12-1.958 36.307 36.307 0 0 0 6.15-3.67 35.923 35.923 0 0 0 9.489-10.48 36.558 36.558 0 0 0 2.422-4.84 37.051 37.051 0 0 0 1.716-5.25c.299-1.208.542-2.443.725-3.701.275-1.887.417-3.827.417-5.811s-.142-3.925-.417-5.811a38.734 38.734 0 0 0-1.215-5.494 36.68 36.68 0 0 0-3.648-8.298 35.923 35.923 0 0 0-9.489-10.48 36.347 36.347 0 0 0-6.15-3.67 37.124 37.124 0 0 0-5.12-1.958 37.67 37.67 0 0 0-3.624-.896 39.875 39.875 0 0 0-7.68-.737c-21.162 0-37.345 16.183-37.345 37.345 0 21.159 16.183 37.342 37.345 37.342z">
+                                </path>
+                            </g>
+                        </svg>
+                    </div>
+                </a>
+            </li>
+        </ul>
+    </nav>
+
+    <!-- Navigation -->
+
+    <!-- Sidebar -->
+    <aside class="sidebar bg-light">
+        <div class="tab-content h-100" role="tablist">
+            <!-- Chats -->
+            <div class="tab-pane fade h-100 show active" id="tab-content-chats" role="tabpanel">
+                <div class="d-flex flex-column h-100 position-relative">
+                    <div class="hide-scrollbar">
+
+                        <div class="container py-8">
+                            <!-- Title -->
+                            <div class="mb-8">
+                                <h2 class="fw-bold m-0">Chats</h2>
+                            </div>
+
+                            <!-- Search -->
+                            <div class="mb-6">
+                                <form action="#">
+                                    <div class="input-group">
+                                        <div class="input-group-text">
+                                            <div class="icon icon-lg">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                    viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                                    class="feather feather-search">
+                                                    <circle cx="11" cy="11" r="8"></circle>
+                                                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                                                </svg>
+                                            </div>
+                                        </div>
+
+                                        <input type="text" class="form-control form-control-lg ps-0"
+                                            placeholder="Buscar mensajes por usuario">
+                                    </div>
+                                </form>
+                            </div>
+
+                            <!-- Chats -->
+                            <div class="card-list">
+
+                                <ng-container *ngIf="!loadingData">
+
+                                    <!-- Card -->
+                                    <a class="card border-0 text-reset" *ngFor="let item of conversations"
+                                        style="cursor: pointer" (click)="selectedConversation( item )">
+                                        <div class="card-body">
+                                            <div class="row gx-5">
+                                                <div class="col-auto">
+                                                    <div class="avatar avatar-online">
+                                                        <!-- <img src="assets/img/avatars/8.jpg" alt="#" class="avatar-img"> -->
+                                                        <svg viewBox="0 0 212 212" width="50" height="50" class="">
+                                                            <path fill="#DFE5E7" class="background"
+                                                                d="M106.251.5C164.653.5 212 47.846 212 106.25S164.653 212 106.25 212C47.846 212 .5 164.654.5 106.25S47.846.5 106.251.5z">
+                                                            </path>
+                                                            <g fill="#FFF">
+                                                                <path class="primary"
+                                                                    d="M173.561 171.615a62.767 62.767 0 0 0-2.065-2.955 67.7 67.7 0 0 0-2.608-3.299 70.112 70.112 0 0 0-3.184-3.527 71.097 71.097 0 0 0-5.924-5.47 72.458 72.458 0 0 0-10.204-7.026 75.2 75.2 0 0 0-5.98-3.055c-.062-.028-.118-.059-.18-.087-9.792-4.44-22.106-7.529-37.416-7.529s-27.624 3.089-37.416 7.529c-.338.153-.653.318-.985.474a75.37 75.37 0 0 0-6.229 3.298 72.589 72.589 0 0 0-9.15 6.395 71.243 71.243 0 0 0-5.924 5.47 70.064 70.064 0 0 0-3.184 3.527 67.142 67.142 0 0 0-2.609 3.299 63.292 63.292 0 0 0-2.065 2.955 56.33 56.33 0 0 0-1.447 2.324c-.033.056-.073.119-.104.174a47.92 47.92 0 0 0-1.07 1.926c-.559 1.068-.818 1.678-.818 1.678v.398c18.285 17.927 43.322 28.985 70.945 28.985 27.678 0 52.761-11.103 71.055-29.095v-.289s-.619-1.45-1.992-3.778a58.346 58.346 0 0 0-1.446-2.322zM106.002 125.5c2.645 0 5.212-.253 7.68-.737a38.272 38.272 0 0 0 3.624-.896 37.124 37.124 0 0 0 5.12-1.958 36.307 36.307 0 0 0 6.15-3.67 35.923 35.923 0 0 0 9.489-10.48 36.558 36.558 0 0 0 2.422-4.84 37.051 37.051 0 0 0 1.716-5.25c.299-1.208.542-2.443.725-3.701.275-1.887.417-3.827.417-5.811s-.142-3.925-.417-5.811a38.734 38.734 0 0 0-1.215-5.494 36.68 36.68 0 0 0-3.648-8.298 35.923 35.923 0 0 0-9.489-10.48 36.347 36.347 0 0 0-6.15-3.67 37.124 37.124 0 0 0-5.12-1.958 37.67 37.67 0 0 0-3.624-.896 39.875 39.875 0 0 0-7.68-.737c-21.162 0-37.345 16.183-37.345 37.345 0 21.159 16.183 37.342 37.345 37.342z">
+                                                                </path>
+                                                            </g>
+                                                        </svg>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col">
+                                                    <div class="d-flex align-items-center mb-3">
+                                                        <h5 class="me-auto mb-0">{{ item.contact.displayName }}</h5>
+                                                        <span class="text-muted extra-small ms-2">{{
+                                                            item.updatedDatetime | dateAgo }}</span>
+                                                    </div>
+
+                                                    <div class="d-flex align-items-center">
+                                                        <div class="line-clamp me-auto">
+                                                            is typing<span
+                                                                class='typing-dots'><span>.</span><span>.</span><span>.</span></span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div><!-- .card-body -->
+                                    </a>
+                                    <!-- Card -->
+                                </ng-container>
+
+
+
+
+
+                                <!-- Card -->
+                                <a *ngIf="loadingData" class="card border-0 text-reset">
+                                    <div class="card-body">
+                                        <div class="row gx-5">
+                                            <div class="col-auto">
+                                                <div class="avatar">
+                                                    <svg class="avatar-img placeholder-img" width="100%" height="100%"
+                                                        xmlns="http://www.w3.org/2000/svg" role="img"
+                                                        aria-label="Placeholder" preserveAspectRatio="xMidYMid slice"
+                                                        focusable="false">
+                                                        <title>Placeholder</title>
+                                                        <rect width="100%" height="100%" fill="#868e96"></rect>
+                                                    </svg>
+                                                </div>
+                                            </div>
+
+                                            <div class="col">
+
+                                                <div class="placeholder-glow">
+                                                    <span class="placeholder col-12"></span>
+                                                    <span class="placeholder col-8"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div><!-- .card-body -->
+                                </a>
+                                <!-- Card -->
+
+                            </div>
+                            <!-- Chats -->
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </aside>
+    <!-- Sidebar -->
+
+    <!-- Chat -->
+    <main class="main is-visible" data-dropzone-area="">
+        <div class="container h-100" style="display: flex; align-items: center; justify-content: center;">
+
+            <ng-container *ngIf="loadingMessages">
+                <div class="lds-spinner">
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                </div>
+            </ng-container>
+            <ng-container *ngIf="!loadingMessages">
+                <div class="d-flex flex-column h-100 w-100 position-relative" *ngIf="conversation_selected != undefined">
+                    <!-- Chat: Header -->
+                    <div class="chat-header border-bottom py-4 py-lg-7">
+                        <div class="row align-items-center">
+
+                            <!-- Mobile: close -->
+                            <div class="col-2 d-xl-none">
+                                <a class="icon icon-lg text-muted" href="#" data-toggle-chat="">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round" class="feather feather-chevron-left">
+                                        <polyline points="15 18 9 12 15 6"></polyline>
+                                    </svg>
+                                </a>
+                            </div>
+                            <!-- Mobile: close -->
+
+                            <!-- Content -->
+                            <div class="col-8 col-xl-12">
+                                <div class="row align-items-center text-center text-xl-start">
+                                    <!-- Title -->
+                                    <div class="col-12 col-xl-6">
+                                        <div class="row align-items-center gx-5">
+                                            <div class="col-auto">
+                                                <div class="avatar avatar-online d-none d-xl-inline-block">
+                                                    <!-- <img class="avatar-img" src="assets/img/avatars/2.jpg" alt=""> -->
+                                                    <svg viewBox="0 0 212 212" width="50" height="50" class="">
+                                                        <path fill="#DFE5E7" class="background"
+                                                            d="M106.251.5C164.653.5 212 47.846 212 106.25S164.653 212 106.25 212C47.846 212 .5 164.654.5 106.25S47.846.5 106.251.5z">
+                                                        </path>
+                                                        <g fill="#FFF">
+                                                            <path class="primary"
+                                                                d="M173.561 171.615a62.767 62.767 0 0 0-2.065-2.955 67.7 67.7 0 0 0-2.608-3.299 70.112 70.112 0 0 0-3.184-3.527 71.097 71.097 0 0 0-5.924-5.47 72.458 72.458 0 0 0-10.204-7.026 75.2 75.2 0 0 0-5.98-3.055c-.062-.028-.118-.059-.18-.087-9.792-4.44-22.106-7.529-37.416-7.529s-27.624 3.089-37.416 7.529c-.338.153-.653.318-.985.474a75.37 75.37 0 0 0-6.229 3.298 72.589 72.589 0 0 0-9.15 6.395 71.243 71.243 0 0 0-5.924 5.47 70.064 70.064 0 0 0-3.184 3.527 67.142 67.142 0 0 0-2.609 3.299 63.292 63.292 0 0 0-2.065 2.955 56.33 56.33 0 0 0-1.447 2.324c-.033.056-.073.119-.104.174a47.92 47.92 0 0 0-1.07 1.926c-.559 1.068-.818 1.678-.818 1.678v.398c18.285 17.927 43.322 28.985 70.945 28.985 27.678 0 52.761-11.103 71.055-29.095v-.289s-.619-1.45-1.992-3.778a58.346 58.346 0 0 0-1.446-2.322zM106.002 125.5c2.645 0 5.212-.253 7.68-.737a38.272 38.272 0 0 0 3.624-.896 37.124 37.124 0 0 0 5.12-1.958 36.307 36.307 0 0 0 6.15-3.67 35.923 35.923 0 0 0 9.489-10.48 36.558 36.558 0 0 0 2.422-4.84 37.051 37.051 0 0 0 1.716-5.25c.299-1.208.542-2.443.725-3.701.275-1.887.417-3.827.417-5.811s-.142-3.925-.417-5.811a38.734 38.734 0 0 0-1.215-5.494 36.68 36.68 0 0 0-3.648-8.298 35.923 35.923 0 0 0-9.489-10.48 36.347 36.347 0 0 0-6.15-3.67 37.124 37.124 0 0 0-5.12-1.958 37.67 37.67 0 0 0-3.624-.896 39.875 39.875 0 0 0-7.68-.737c-21.162 0-37.345 16.183-37.345 37.345 0 21.159 16.183 37.342 37.345 37.342z">
+                                                            </path>
+                                                        </g>
+                                                    </svg>
+                                                </div>
+                                            </div>
+
+                                            <div class="col overflow-hidden">
+                                                <h5 class="text-truncate">{{ conversation_selected.contact.displayName
+                                                    }}</h5>
+                                                <p class="text-truncate">is typing<span
+                                                        class='typing-dots'><span>.</span><span>.</span><span>.</span></span>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Title -->
+
+                                    <!-- Toolbar -->
+                                    <div class="col-xl-6 d-none d-xl-block">
+                                        <div class="row align-items-center justify-content-end gx-6">
+                                            <!-- <div class="col-auto">
+                                                <a href="#" class="icon icon-lg text-muted" data-bs-toggle="offcanvas"
+                                                    data-bs-target="#offcanvas-more" aria-controls="offcanvas-more">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                        viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                                        class="feather feather-more-horizontal">
+                                                        <circle cx="12" cy="12" r="1"></circle>
+                                                        <circle cx="19" cy="12" r="1"></circle>
+                                                        <circle cx="5" cy="12" r="1"></circle>
+                                                    </svg>
+                                                </a>
+                                            </div> -->
+
+                                            <div class="col-auto">
+                                                <div class="avatar-group">
+
+                                                    <svg viewBox="0 0 212 212" width="50" height="50" class="">
+                                                        <path fill="#DFE5E7" class="background"
+                                                            d="M106.251.5C164.653.5 212 47.846 212 106.25S164.653 212 106.25 212C47.846 212 .5 164.654.5 106.25S47.846.5 106.251.5z">
+                                                        </path>
+                                                        <g fill="#FFF">
+                                                            <path class="primary"
+                                                                d="M173.561 171.615a62.767 62.767 0 0 0-2.065-2.955 67.7 67.7 0 0 0-2.608-3.299 70.112 70.112 0 0 0-3.184-3.527 71.097 71.097 0 0 0-5.924-5.47 72.458 72.458 0 0 0-10.204-7.026 75.2 75.2 0 0 0-5.98-3.055c-.062-.028-.118-.059-.18-.087-9.792-4.44-22.106-7.529-37.416-7.529s-27.624 3.089-37.416 7.529c-.338.153-.653.318-.985.474a75.37 75.37 0 0 0-6.229 3.298 72.589 72.589 0 0 0-9.15 6.395 71.243 71.243 0 0 0-5.924 5.47 70.064 70.064 0 0 0-3.184 3.527 67.142 67.142 0 0 0-2.609 3.299 63.292 63.292 0 0 0-2.065 2.955 56.33 56.33 0 0 0-1.447 2.324c-.033.056-.073.119-.104.174a47.92 47.92 0 0 0-1.07 1.926c-.559 1.068-.818 1.678-.818 1.678v.398c18.285 17.927 43.322 28.985 70.945 28.985 27.678 0 52.761-11.103 71.055-29.095v-.289s-.619-1.45-1.992-3.778a58.346 58.346 0 0 0-1.446-2.322zM106.002 125.5c2.645 0 5.212-.253 7.68-.737a38.272 38.272 0 0 0 3.624-.896 37.124 37.124 0 0 0 5.12-1.958 36.307 36.307 0 0 0 6.15-3.67 35.923 35.923 0 0 0 9.489-10.48 36.558 36.558 0 0 0 2.422-4.84 37.051 37.051 0 0 0 1.716-5.25c.299-1.208.542-2.443.725-3.701.275-1.887.417-3.827.417-5.811s-.142-3.925-.417-5.811a38.734 38.734 0 0 0-1.215-5.494 36.68 36.68 0 0 0-3.648-8.298 35.923 35.923 0 0 0-9.489-10.48 36.347 36.347 0 0 0-6.15-3.67 37.124 37.124 0 0 0-5.12-1.958 37.67 37.67 0 0 0-3.624-.896 39.875 39.875 0 0 0-7.68-.737c-21.162 0-37.345 16.183-37.345 37.345 0 21.159 16.183 37.342 37.345 37.342z">
+                                                            </path>
+                                                        </g>
+                                                    </svg>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Toolbar -->
+                                </div>
+                            </div>
+                            <!-- Content -->
+
+                            <!-- Mobile: more -->
+                            <div class="col-2 d-xl-none text-end">
+                                <a href="#" class="icon icon-lg text-muted" data-bs-toggle="offcanvas"
+                                    data-bs-target="#offcanvas-more" aria-controls="offcanvas-more">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round" class="feather feather-more-vertical">
+                                        <circle cx="12" cy="12" r="1"></circle>
+                                        <circle cx="12" cy="5" r="1"></circle>
+                                        <circle cx="12" cy="19" r="1"></circle>
+                                    </svg>
+                                </a>
+                            </div>
+                            <!-- Mobile: more -->
+
+                        </div>
+                    </div>
+                    <!-- Chat: Header -->
+
+                    <!-- Chat: Content -->
+
+                    <div class="chat-body hide-scrollbar flex-1 h-100" id="chat-body">
+                        <div class="chat-body-inner">
+                            <div class="py-6 py-lg-12">
+
+                                <!-- Divider -->
+                                <!-- <div class="message-divider">
+                                    <small class="text-muted">Monday, Sep 16</small>
+                                </div> -->
+
+                                <ng-container *ngFor="let message of messages">
+                                    <!-- Message -->
+                                    <div *ngIf="conversation_selected.contact.displayName == message.to"
+                                        class="message message-out">
+                                        <a class="avatar avatar-responsive">
+                                            <!-- <img class="avatar-img" src="assets/img/avatars/1.jpg" alt=""> -->
+                                            <svg viewBox="0 0 212 212" width="50" height="50" class="">
+                                                <path fill="#DFE5E7" class="background"
+                                                    d="M106.251.5C164.653.5 212 47.846 212 106.25S164.653 212 106.25 212C47.846 212 .5 164.654.5 106.25S47.846.5 106.251.5z">
+                                                </path>
+                                                <g fill="#FFF">
+                                                    <path class="primary"
+                                                        d="M173.561 171.615a62.767 62.767 0 0 0-2.065-2.955 67.7 67.7 0 0 0-2.608-3.299 70.112 70.112 0 0 0-3.184-3.527 71.097 71.097 0 0 0-5.924-5.47 72.458 72.458 0 0 0-10.204-7.026 75.2 75.2 0 0 0-5.98-3.055c-.062-.028-.118-.059-.18-.087-9.792-4.44-22.106-7.529-37.416-7.529s-27.624 3.089-37.416 7.529c-.338.153-.653.318-.985.474a75.37 75.37 0 0 0-6.229 3.298 72.589 72.589 0 0 0-9.15 6.395 71.243 71.243 0 0 0-5.924 5.47 70.064 70.064 0 0 0-3.184 3.527 67.142 67.142 0 0 0-2.609 3.299 63.292 63.292 0 0 0-2.065 2.955 56.33 56.33 0 0 0-1.447 2.324c-.033.056-.073.119-.104.174a47.92 47.92 0 0 0-1.07 1.926c-.559 1.068-.818 1.678-.818 1.678v.398c18.285 17.927 43.322 28.985 70.945 28.985 27.678 0 52.761-11.103 71.055-29.095v-.289s-.619-1.45-1.992-3.778a58.346 58.346 0 0 0-1.446-2.322zM106.002 125.5c2.645 0 5.212-.253 7.68-.737a38.272 38.272 0 0 0 3.624-.896 37.124 37.124 0 0 0 5.12-1.958 36.307 36.307 0 0 0 6.15-3.67 35.923 35.923 0 0 0 9.489-10.48 36.558 36.558 0 0 0 2.422-4.84 37.051 37.051 0 0 0 1.716-5.25c.299-1.208.542-2.443.725-3.701.275-1.887.417-3.827.417-5.811s-.142-3.925-.417-5.811a38.734 38.734 0 0 0-1.215-5.494 36.68 36.68 0 0 0-3.648-8.298 35.923 35.923 0 0 0-9.489-10.48 36.347 36.347 0 0 0-6.15-3.67 37.124 37.124 0 0 0-5.12-1.958 37.67 37.67 0 0 0-3.624-.896 39.875 39.875 0 0 0-7.68-.737c-21.162 0-37.345 16.183-37.345 37.345 0 21.159 16.183 37.342 37.345 37.342z">
+                                                    </path>
+                                                </g>
+                                            </svg>
+                                        </a>
+
+                                        <div class="message-inner">
+                                            <div class="message-body">
+                                                <div class="message-content">
+                                                    <div class="message-text" *ngIf="message.type === 'text'">
+                                                        <p>{{ message.content.text }}</p>
+                                                    </div>
+                                                    <div class="message-text"
+                                                        *ngIf="message.type === 'whatsappSticker'">
+                                                        <img [src]="message.content.whatsappSticker.link"
+                                                            alt="whatsappSticker" style="width: 80px;">
+                                                    </div>
+
+                                                    <div class="message-gallery" *ngIf="message.type === 'image'">
+                                                        <div class="row gx-3">
+                                                            <div class="col">
+                                                                <img class="img-fluid rounded"
+                                                                    [src]="message.content.image.url" data-action="zoom"
+                                                                    alt="" style="max-height: 200px;">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="message-gallery" *ngIf="message.type === 'video'">
+                                                        <div class="row gx-3">
+                                                            <div class="col">
+                                                                <video width="320" height="240" controls>
+                                                                    <source [src]="message.content.video.url"
+                                                                        type="video/mp4">
+                                                                </video>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="message-gallery" *ngIf="message.type === 'audio'">
+                                                        <div class="row gx-3">
+                                                            <div class="col">
+                                                                <audio controls>
+                                                                    <source [src]="message.content.audio.url"
+                                                                        type="audio/ogg">
+                                                                </audio>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <!-- Dropdown -->
+                                                    <div class="message-action">
+                                                        <div class="dropdown">
+                                                            <a class="icon text-muted" href="#" role="button"
+                                                                data-bs-toggle="dropdown" aria-expanded="false">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" width="24"
+                                                                    height="24" viewBox="0 0 24 24" fill="none"
+                                                                    stroke="currentColor" stroke-width="2"
+                                                                    stroke-linecap="round" stroke-linejoin="round"
+                                                                    class="feather feather-more-vertical">
+                                                                    <circle cx="12" cy="12" r="1"></circle>
+                                                                    <circle cx="12" cy="5" r="1"></circle>
+                                                                    <circle cx="12" cy="19" r="1"></circle>
+                                                                </svg>
+                                                            </a>
+
+                                                            <ul class="dropdown-menu">
+                                                                <li>
+                                                                    <a class="dropdown-item d-flex align-items-center"
+                                                                        href="#">
+                                                                        <span class="me-auto">Edit</span>
+                                                                        <div class="icon">
+                                                                            <svg xmlns="http://www.w3.org/2000/svg"
+                                                                                width="24" height="24"
+                                                                                viewBox="0 0 24 24" fill="none"
+                                                                                stroke="currentColor" stroke-width="2"
+                                                                                stroke-linecap="round"
+                                                                                stroke-linejoin="round"
+                                                                                class="feather feather-edit-3">
+                                                                                <path d="M12 20h9"></path>
+                                                                                <path
+                                                                                    d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z">
+                                                                                </path>
+                                                                            </svg>
+                                                                        </div>
+                                                                    </a>
+                                                                </li>
+                                                                <li>
+                                                                    <a class="dropdown-item d-flex align-items-center"
+                                                                        href="#">
+                                                                        <span class="me-auto">Reply</span>
+                                                                        <div class="icon">
+                                                                            <svg xmlns="http://www.w3.org/2000/svg"
+                                                                                width="24" height="24"
+                                                                                viewBox="0 0 24 24" fill="none"
+                                                                                stroke="currentColor" stroke-width="2"
+                                                                                stroke-linecap="round"
+                                                                                stroke-linejoin="round"
+                                                                                class="feather feather-corner-up-left">
+                                                                                <polyline points="9 14 4 9 9 4">
+                                                                                </polyline>
+                                                                                <path d="M20 20v-7a4 4 0 0 0-4-4H4">
+                                                                                </path>
+                                                                            </svg>
+                                                                        </div>
+                                                                    </a>
+                                                                </li>
+                                                                <li>
+                                                                    <hr class="dropdown-divider">
+                                                                </li>
+                                                                <li>
+                                                                    <a class="dropdown-item d-flex align-items-center text-danger"
+                                                                        href="#">
+                                                                        <span class="me-auto">Delete</span>
+                                                                        <div class="icon">
+                                                                            <svg xmlns="http://www.w3.org/2000/svg"
+                                                                                width="24" height="24"
+                                                                                viewBox="0 0 24 24" fill="none"
+                                                                                stroke="currentColor" stroke-width="2"
+                                                                                stroke-linecap="round"
+                                                                                stroke-linejoin="round"
+                                                                                class="feather feather-trash-2">
+                                                                                <polyline points="3 6 5 6 21 6">
+                                                                                </polyline>
+                                                                                <path
+                                                                                    d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2">
+                                                                                </path>
+                                                                                <line x1="10" y1="11" x2="10" y2="17">
+                                                                                </line>
+                                                                                <line x1="14" y1="11" x2="14" y2="17">
+                                                                                </line>
+                                                                            </svg>
+                                                                        </div>
+                                                                    </a>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="message-footer">
+                                                <span class="extra-small text-muted">{{ message.createdDatetime |dateAgo
+                                                    }}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Message -->
+                                    <div *ngIf="conversation_selected.contact.displayName == message.from"
+                                        class="message">
+                                        <a class="avatar avatar-responsive">
+                                            <!-- <img class="avatar-img" src="assets/img/avatars/2.jpg" alt=""> -->
+                                            <svg viewBox="0 0 212 212" width="50" height="50" class="">
+                                                <path fill="#DFE5E7" class="background"
+                                                    d="M106.251.5C164.653.5 212 47.846 212 106.25S164.653 212 106.25 212C47.846 212 .5 164.654.5 106.25S47.846.5 106.251.5z">
+                                                </path>
+                                                <g fill="#FFF">
+                                                    <path class="primary"
+                                                        d="M173.561 171.615a62.767 62.767 0 0 0-2.065-2.955 67.7 67.7 0 0 0-2.608-3.299 70.112 70.112 0 0 0-3.184-3.527 71.097 71.097 0 0 0-5.924-5.47 72.458 72.458 0 0 0-10.204-7.026 75.2 75.2 0 0 0-5.98-3.055c-.062-.028-.118-.059-.18-.087-9.792-4.44-22.106-7.529-37.416-7.529s-27.624 3.089-37.416 7.529c-.338.153-.653.318-.985.474a75.37 75.37 0 0 0-6.229 3.298 72.589 72.589 0 0 0-9.15 6.395 71.243 71.243 0 0 0-5.924 5.47 70.064 70.064 0 0 0-3.184 3.527 67.142 67.142 0 0 0-2.609 3.299 63.292 63.292 0 0 0-2.065 2.955 56.33 56.33 0 0 0-1.447 2.324c-.033.056-.073.119-.104.174a47.92 47.92 0 0 0-1.07 1.926c-.559 1.068-.818 1.678-.818 1.678v.398c18.285 17.927 43.322 28.985 70.945 28.985 27.678 0 52.761-11.103 71.055-29.095v-.289s-.619-1.45-1.992-3.778a58.346 58.346 0 0 0-1.446-2.322zM106.002 125.5c2.645 0 5.212-.253 7.68-.737a38.272 38.272 0 0 0 3.624-.896 37.124 37.124 0 0 0 5.12-1.958 36.307 36.307 0 0 0 6.15-3.67 35.923 35.923 0 0 0 9.489-10.48 36.558 36.558 0 0 0 2.422-4.84 37.051 37.051 0 0 0 1.716-5.25c.299-1.208.542-2.443.725-3.701.275-1.887.417-3.827.417-5.811s-.142-3.925-.417-5.811a38.734 38.734 0 0 0-1.215-5.494 36.68 36.68 0 0 0-3.648-8.298 35.923 35.923 0 0 0-9.489-10.48 36.347 36.347 0 0 0-6.15-3.67 37.124 37.124 0 0 0-5.12-1.958 37.67 37.67 0 0 0-3.624-.896 39.875 39.875 0 0 0-7.68-.737c-21.162 0-37.345 16.183-37.345 37.345 0 21.159 16.183 37.342 37.345 37.342z">
+                                                    </path>
+                                                </g>
+                                            </svg>
+                                        </a>
+
+                                        <div class="message-inner">
+                                            <div class="message-body">
+                                                <div class="message-content">
+                                                    <div class="message-text" *ngIf="message.type === 'text'" style="background: #202c33;">
+                                                        <p style="color: white;">{{ message.content.text }}</p>
+                                                    </div>
+                                                    <div class="message-text"
+                                                        *ngIf="message.type === 'whatsappSticker'">
+                                                        <img [src]="message.content.whatsappSticker.link"
+                                                            alt="whatsappSticker" style="width: 80px;">
+                                                    </div>
+
+                                                    <div class="message-gallery" *ngIf="message.type === 'image'">
+                                                        <div class="row gx-3">
+                                                            <div class="col">
+                                                                <img class="img-fluid rounded"
+                                                                    [src]="message.content.image.url" data-action="zoom"
+                                                                    alt="" style="max-height: 200px;">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="message-gallery" *ngIf="message.type === 'video'">
+                                                        <div class="row gx-3">
+                                                            <div class="col">
+                                                                <video width="320" height="240" controls>
+                                                                    <source [src]="message.content.video.url"
+                                                                        type="video/mp4">
+                                                                </video>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="message-gallery" *ngIf="message.type === 'audio'">
+                                                        <div class="row gx-3">
+                                                            <div class="col">
+                                                                <audio controls>
+                                                                    <source [src]="message.content.audio.url"
+                                                                        type="audio/ogg">
+                                                                </audio>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="message-footer">
+                                                <span class="extra-small text-muted">{{ message.createdDatetime |dateAgo
+                                                    }}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </ng-container>
+
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Chat: Content -->
+
+                    <!-- Chat: Footer -->
+                    <div class="chat-footer pb-3 pb-lg-7 bottom-0 start-0">
+                        <!-- Chat: Files -->
+                        <div class="dz-preview bg-dark" id="dz-preview-row" data-horizontal-scroll="">
+                        </div>
+                        <!-- Chat: Files -->
+
+                        <!-- Chat: Form -->
+                        <form class="chat-form rounded-pill bg-dark" data-emoji-form="">
+                            <div class="row align-items-center gx-0">
+                                <div class="col-auto">
+                                    <label for="image_file" class="btn btn-icon btn-link text-body rounded-circle">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                            stroke-linecap="round" stroke-linejoin="round"
+                                            class="feather feather-paperclip">
+                                            <path
+                                                d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48">
+                                            </path>
+                                        </svg>
+                                    </label>
+                                    <input type="file" hidden name="image_file" id="image_file" accept="image/png, image/jpg, image/jpeg, image/webp" (change)="getImage($event)">
+                                </div>
+
+                                <div class="col">
+                                    <div class="input-group" *ngIf="message_type == 'text'">
+                                        <textarea class="form-control px-0" placeholder="Escribe un mensaje..." rows="1" name="message_text" [(ngModel)]="message_str"></textarea>
+
+                                        <!-- <a class="input-group-text text-body pe-0" data-emoji-btn="">
+                                            <span class="icon icon-lg">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                    viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                                    class="feather feather-smile">
+                                                    <circle cx="12" cy="12" r="10"></circle>
+                                                    <path d="M8 14s1.5 2 4 2 4-2 4-2"></path>
+                                                    <line x1="9" y1="9" x2="9.01" y2="9"></line>
+                                                    <line x1="15" y1="9" x2="15.01" y2="9"></line>
+                                                </svg>
+                                            </span>
+                                        </a> -->
+                                    </div>
+                                    <div class="d-flex flex-row align-items-center" *ngIf="message_type == 'image' && image_file">
+                                        <img src="assets/img/picture.png" style="width: 40px;" alt="Default Image">
+                                        <span class="mx-2">{{ image_file.name }}</span>
+                                        <a style="cursor: pointer" (click)="cleanUpload()" title="Cancelar Upload">
+                                            <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="css-i6dzq1"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                                        </a>
+                                    </div>
+                                </div>
+
+                                <div class="col-auto">
+                                    <button class="btn btn-icon btn-primary rounded-circle ms-5" (click)="sendMessage()">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                            stroke-linecap="round" stroke-linejoin="round" class="feather feather-send">
+                                            <line x1="22" y1="2" x2="11" y2="13"></line>
+                                            <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                                        </svg>
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                        <!-- Chat: Form -->
+                    </div>
+                    <!-- Chat: Footer -->
+                </div>
+                <div class="row" *ngIf="conversation_selected == undefined">
+                    <div class="col-12">
+                        <svg width="360" height="189" viewBox="0 0 360 189" fill="none"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" clip-rule="evenodd"
+                                d="M263.973 169.512C296.928 158.399 321.88 127.034 318.305 81.6873C312.874 12.7907 246.61 -4.29994 205.331 15.9952C149.334 43.5266 142.242 48.0401 102.134 48.0401C72.2614 48.0401 41.8454 62.4603 38.0434 101.448C35.2875 129.708 46.373 154.375 87.3951 166.97C162.054 189.892 232.127 180.251 263.973 169.512Z"
+                                fill="#DAF7F3"></path>
+                            <rect x="0.350314" y="0.491301" width="36.3309" height="71.7205" rx="6.39808"
+                                transform="matrix(0.986206 0.165525 -0.16491 0.986309 53.5541 83.2331)" fill="#42CBA5"
+                                stroke="#316474" stroke-width="0.853077"></rect>
+                            <rect x="0.353963" y="0.496419" width="36.322" height="71.7116" rx="6.39363"
+                                transform="matrix(0.986206 0.165525 -0.16491 0.986309 53.9368 80.9482)" fill="white"
+                                stroke="#316474" stroke-width="0.861963"></rect>
+                            <path
+                                d="M86.853 93.0759L77.0579 151.659C76.6995 153.803 74.6715 155.249 72.5281 154.889L48.7185 150.893C46.5752 150.533 45.1282 148.504 45.4866 146.36L55.2817 87.7769C55.6401 85.6334 57.6681 84.1873 59.8115 84.5471L63.6109 85.1848L79.8216 87.9056L83.6211 88.5433C85.7644 88.903 87.2114 90.9323 86.853 93.0759Z"
+                                fill="#EEFEFA" stroke="#316474" stroke-width="0.861963"></path>
+                            <path
+                                d="M58.4726 88.8221C58.3721 89.4244 58.7846 90.0018 59.3926 90.1059C60.0037 90.2105 60.5863 89.7985 60.6873 89.193C60.7878 88.5907 60.3753 88.0133 59.7674 87.9092C59.1562 87.8046 58.5736 88.2166 58.4726 88.8221Z"
+                                fill="white" stroke="#316474" stroke-width="0.853077"></path>
+                            <path
+                                d="M111.421 117.587C111.208 115.535 109.372 114.046 107.321 114.262L80.1959 117.113C78.1442 117.329 76.6535 119.167 76.8665 121.219L77.9482 131.641C78.1612 133.693 79.9971 135.182 82.0488 134.966L119.624 131.017C119.884 130.99 119.976 130.658 119.767 130.501L120.285 129.811L119.767 130.501L114.076 126.232C112.861 125.321 112.081 123.944 111.924 122.433L111.421 117.587Z"
+                                fill="#42CBA5" stroke="#316474" stroke-width="1.72407"></path>
+                            <path
+                                d="M81.8041 122.275C81.3306 122.324 80.9866 122.749 81.0358 123.222C81.0849 123.696 81.5086 124.039 81.9821 123.989L81.8041 122.275ZM105.64 121.503C106.113 121.453 106.457 121.029 106.408 120.555C106.359 120.082 105.935 119.738 105.462 119.788L105.64 121.503ZM81.9821 123.989L105.64 121.503L105.462 119.788L81.8041 122.275L81.9821 123.989Z"
+                                fill="#33AF8D"></path>
+                            <path
+                                d="M82.3842 127.866C81.9107 127.916 81.5667 128.34 81.6158 128.814C81.665 129.287 82.0887 129.631 82.5621 129.581L82.3842 127.866ZM106.22 127.094C106.693 127.045 107.037 126.62 106.988 126.147C106.939 125.673 106.515 125.33 106.042 125.38L106.22 127.094ZM82.5621 129.581L106.22 127.094L106.042 125.38L82.3842 127.866L82.5621 129.581Z"
+                                fill="#33AF8D"></path>
+                            <path d="M125.463 42.5443L286.19 25.6512L297.132 129.758L136.405 146.652L125.463 42.5443Z"
+                                fill="#EEFEFA"></path>
+                            <path
+                                d="M295.928 130.484L138.655 147.014C135.404 147.356 132.479 144.995 132.138 141.75L121.537 40.8838C121.196 37.6393 123.564 34.7219 126.816 34.3801L284.089 17.85C287.343 17.508 290.265 19.8695 290.606 23.114L301.207 123.981C301.548 127.225 299.182 130.142 295.928 130.484Z"
+                                fill="white"></path>
+                            <path
+                                d="M138.655 147.014C135.404 147.356 132.479 144.995 132.138 141.75L121.537 40.8838C121.196 37.6393 123.564 34.7219 126.816 34.3801L284.089 17.85C287.343 17.508 290.265 19.8695 290.606 23.114L301.207 123.981C301.548 127.225 299.182 130.142 295.928 130.484"
+                                stroke="#316474"></path>
+                            <path
+                                d="M290.245 125.898L143.148 141.359C140.368 141.651 137.899 139.694 137.619 137.032L127.978 45.2988C127.698 42.6368 129.705 40.2098 132.486 39.9174L279.583 24.457C282.366 24.1645 284.832 26.1212 285.112 28.7833L294.754 120.517C295.033 123.179 293.028 125.606 290.245 125.898Z"
+                                fill="#EEFEFA" stroke="#316474"></path>
+                            <path
+                                d="M235.259 137.428L312.949 129.263L313.671 136.134C313.765 137.031 313.618 137.844 313.33 138.429C313.038 139.021 312.643 139.314 312.259 139.354L125.358 158.998C124.974 159.039 124.527 158.835 124.118 158.316C123.714 157.803 123.401 157.039 123.307 156.142L122.585 149.271L200.276 141.105C200.601 142.008 201.075 142.789 201.654 143.357C202.316 144.008 203.148 144.405 204.048 144.31L232.236 141.347C233.135 141.253 233.866 140.692 234.379 139.919C234.827 139.243 235.129 138.38 235.259 137.428Z"
+                                fill="#42CBA5" stroke="#316474"></path>
+                            <path
+                                d="M235.423 136.375L314.707 128.042L315.153 132.281C315.256 133.261 314.544 134.14 313.564 134.243L122.992 154.273C122.012 154.376 121.133 153.664 121.03 152.684L120.585 148.445L199.87 140.112C200.564 141.391 201.971 142.206 203.517 142.043L232.258 139.023C233.802 138.86 235.009 137.772 235.423 136.375Z"
+                                fill="white" stroke="#316474"></path>
+                            <path fill-rule="evenodd" clip-rule="evenodd"
+                                d="M210.616 68.862C214.35 68.4875 218.104 69.5614 221.067 71.8379C224.102 74.1693 226.061 77.5173 226.598 81.2882C227.123 84.9707 226.202 88.7389 224.024 91.7717C221.635 95.0981 218.05 97.241 213.993 97.7845C213.854 97.8031 213.715 97.8198 213.575 97.8344C211.383 98.0649 209.159 97.8031 207.092 97.0715L199.621 99.5614C199.614 99.5636 199.607 99.565 199.6 99.5658C199.533 99.5727 199.473 99.5204 199.475 99.4512L199.962 91.6506C198.649 89.7697 197.797 87.5847 197.49 85.3032C196.972 81.4482 198 77.6213 200.383 74.5271C202.855 71.319 206.478 69.2968 210.544 68.8696L210.616 68.862ZM210.799 71.3833C210.682 71.3955 210.566 71.4094 210.449 71.4252C203.812 72.314 199.133 78.3879 200.017 84.9648C200.287 86.9731 201.068 88.8902 202.274 90.5089L202.536 90.8598L202.125 96.1616L207.191 94.4008L207.604 94.5618C209.408 95.2644 211.374 95.5254 213.311 95.3218C213.426 95.3097 213.541 95.2959 213.656 95.2805C220.292 94.3917 224.972 88.3179 224.088 81.7409C223.219 75.28 217.299 70.7001 210.799 71.3833ZM206.255 76.8888L206.27 76.8876C206.515 76.8694 206.761 76.8505 206.976 76.8437C207.239 76.8348 207.529 76.8254 207.85 77.4125C208.23 78.1097 209.078 79.8609 209.184 80.0365C209.289 80.2121 209.366 80.4206 209.262 80.6734C209.157 80.9259 209.107 81.0825 208.939 81.3091C208.771 81.5359 208.588 81.8135 208.435 81.9892C208.263 82.1849 208.087 82.3967 208.328 82.7458C208.57 83.095 209.396 84.2344 210.561 85.1202C212.058 86.2585 213.195 86.5666 213.65 86.7216C213.814 86.7776 213.948 86.7983 214.062 86.7864C214.218 86.7699 214.336 86.6921 214.443 86.5598C214.647 86.3064 215.25 85.4395 215.501 85.0434C215.633 84.8363 215.762 84.7541 215.911 84.7384C216.03 84.7259 216.162 84.756 216.316 84.7989C216.662 84.8955 218.535 85.6437 218.916 85.7988C219.298 85.9538 219.55 86.0269 219.653 86.172C219.756 86.3178 219.81 87.0481 219.567 87.9227C219.323 88.7976 217.882 89.7311 217.212 89.8421C217.016 89.8745 216.825 89.9223 216.572 89.9489C215.961 90.0131 214.992 89.9537 212.731 89.2576C208.884 88.0733 206.243 84.4473 206.041 84.2178C205.839 83.9878 204.393 82.3511 204.26 80.5558C204.128 78.7607 205.013 77.8072 205.323 77.4171C205.62 77.0429 205.993 76.9162 206.239 76.8903C206.25 76.8892 206.26 76.8883 206.27 76.8876C206.263 76.8881 206.258 76.8885 206.255 76.8888Z"
+                                fill="#316474" fill-opacity="0.24"></path>
+                            <path
+                                d="M118.422 64.6861C118.641 62.6346 120.481 61.1464 122.533 61.3621L153.583 64.6256C155.635 64.8413 157.122 66.6791 156.903 68.7306L155.569 81.2676C155.351 83.3191 153.51 84.8073 151.459 84.5917L109.005 80.1296C108.745 80.1023 108.654 79.7705 108.864 79.6139L108.348 78.9241L108.864 79.6139L115.614 74.564C116.831 73.6532 117.614 72.2767 117.775 70.7657L118.422 64.6861Z"
+                                fill="#42CBA5" stroke="#316474" stroke-width="1.72407"></path>
+                            <path
+                                d="M151.271 70.4778C151.745 70.5276 152.088 70.9517 152.037 71.4251C151.987 71.8986 151.562 72.242 151.089 72.1922L151.271 70.4778ZM124.871 69.4366C124.397 69.3868 124.054 68.9627 124.104 68.4893C124.155 68.0158 124.579 67.6724 125.053 67.7222L124.871 69.4366ZM151.089 72.1922L124.871 69.4366L125.053 67.7222L151.271 70.4778L151.089 72.1922Z"
+                                fill="#33AF8D"></path>
+                            <path
+                                d="M150.613 76.6728C151.086 76.7225 151.429 77.1467 151.379 77.6201C151.328 78.0935 150.904 78.4369 150.43 78.3872L150.613 76.6728ZM124.212 75.6315C123.738 75.5817 123.395 75.1576 123.446 74.6842C123.496 74.2108 123.921 73.8673 124.394 73.9171L124.212 75.6315ZM150.43 78.3872L124.212 75.6315L124.394 73.9171L150.613 76.6728L150.43 78.3872Z"
+                                fill="#33AF8D"></path>
+                        </svg>
+                    </div>
+                </div>
+            </ng-container>
+
+        </div>
+    </main>
+    <!-- Chat -->
+
+</div>
