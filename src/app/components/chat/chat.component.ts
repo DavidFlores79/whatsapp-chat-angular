@@ -1,5 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import { ChatService } from 'src/app/services/chat.service';
+
+declare const Recorder: any;
+declare const Oscilloscope: any;
 
 @Component({
   selector: 'app-chat',
@@ -7,6 +10,9 @@ import { ChatService } from 'src/app/services/chat.service';
   styleUrls: ['./chat.component.css'],
 })
 export class ChatComponent {
+  @ViewChild('myCanvas')
+  myCanvas: ElementRef<HTMLCanvasElement> | undefined;
+
   public conversations: Array<any> = [];
   public messages: Array<any> = [];
   public loadingData = true;
@@ -16,7 +22,16 @@ export class ChatComponent {
   public message_str: String = '';
   public message_url: String = '';
   public image_file: any = undefined;
+  public audio_file: any = undefined;
   public dataRaw: any = {};
+
+  /**Variables para Audio */
+  public gumStream: any = ''; //stop recording
+  public rec: any = {};
+  public input: any = {};
+  public AudioContext =
+    (window as any).AudioContext || (window as any).webKitAudioContext;
+  public ctx: any = {};
 
   constructor(private _chatService: ChatService) {}
 
@@ -47,9 +62,9 @@ export class ChatComponent {
     this.cleanUpload();
   }
 
-  getMessages(id: String) {
-    this.loadingMessages = true;
-    this.loadingData = true;
+  getMessages(id: String, isFast: boolean = false) {
+    this.loadingMessages = !isFast ? true : false;
+    this.loadingData = !isFast ? true : false;
     this._chatService.getMessages(id).subscribe(async (response) => {
       this.messages = [];
       let item: any;
@@ -67,7 +82,7 @@ export class ChatComponent {
       });
       console.log(this.messages);
       this.scrollToBottom();
-      this.loadingMessages = false;
+      this.loadingMessages = !isFast ? false : false;
       await this.delay(1000);
       await this.delay(1000);
       await this.delay(1000);
@@ -101,6 +116,13 @@ export class ChatComponent {
           },
         };
         break;
+      case 'audio':
+        this.dataRaw.content = {
+          audio: {
+            url: this.message_url
+          },
+        };
+        break;
 
       default:
         break;
@@ -109,8 +131,8 @@ export class ChatComponent {
     this._chatService.sendMessage(this.dataRaw).subscribe(async (response) => {
       console.log(response);
       this.cleanUpload();
-      await this.delay(3000);
-      this.getMessages(this.conversation_selected.id);
+      await this.delay(2000);
+      this.getMessages(this.conversation_selected.id, true);
       // console.log(this.messages);
     });
   }
@@ -118,33 +140,34 @@ export class ChatComponent {
   getImage(evt: any) {
     const file = evt.target.files[0];
 
-    if (file) {
-      if (file.size <= 2100000) {
-        if (
-          file.type == 'image/png' ||
-          file.type == 'image/jpg' ||
-          file.type == 'image/jpeg' ||
-          file.type == 'image/webp'
-        ) {
-          this.image_file = file;
-          this.message_type = 'image';
-          this.uploadFile();
-        }
-      } else {
-        this.image_file = undefined;
-      }
-
-      console.log(this.image_file);
+    if (!file) throw new Error('No se pudo crear el archivo de imagen.');
+    if (file.size >= 2100000) {
+      this.image_file = undefined;
+      throw new Error('El archivo de imagen es demasiado grande. Máximo 2Mb.');
     }
+
+    if (
+      file.type != 'image/png' &&
+      file.type != 'image/jpg' &&
+      file.type != 'image/jpeg' &&
+      file.type != 'image/webp'
+    )
+      throw new Error(
+        'El archivo de imagen no es del formato permitido (jpg, jpeg, png, webp).'
+      );
+
+    this.image_file = file;
+    this.message_type = 'image';
+    this.uploadFile(this.image_file);
+
+    console.log(this.image_file);
   }
 
-  uploadFile() {
-    this._chatService
-      .uploadFile({ file: this.image_file })
-      .subscribe((response) => {
-        console.log(response);
-        this.message_url = response.data;
-      });
+  uploadFile(file: any) {
+    this._chatService.uploadFile({ file: file }).subscribe((response) => {
+      console.log(response);
+      this.message_url = response.data;
+    });
   }
 
   cleanUpload() {
@@ -153,4 +176,56 @@ export class ChatComponent {
     this.message_str = '';
     this.message_url = '';
   }
+
+  cleanAudioRecord() {
+    this.audio_file = undefined;
+    this.message_url = '';
+    this.gumStream = ''; //stop recording
+    this.rec = {};
+    this.input = {};
+    this.ctx = {};
+  }
+
+  startRecording() {
+    this.cleanAudioRecord();
+    this.message_type = 'audio';
+    const constraints = { audio: true, video: false };
+    navigator.mediaDevices.getUserMedia(constraints).then((stream: any) => {
+      console.log(stream);
+      this.ctx = new this.AudioContext();
+      this.gumStream = stream;
+      this.input = this.ctx.createMediaStreamSource(stream);
+      this.rec = new Recorder(this.input, { numChannels: 1 });
+
+      const ctx: any = this.myCanvas?.nativeElement.getContext('2d');
+      ctx.lineWidth = 2;
+      ctx.strokeStyle = '#B5B5C3';
+
+      const scope = new Oscilloscope(this.input);
+      scope.animate(ctx);
+
+      this.rec.record();
+    });
+  }
+
+  stopRecording() {
+    this.rec.stop();
+    this.gumStream.getAudioTracks()[0].stop();
+    this.rec.exportWAV(this.createDownloadLink);
+  }
+
+  createDownloadLink = (blob: any) => {
+    const url = URL.createObjectURL(blob);
+    const au = document.createElement('audio');
+    au.controls = true;
+    au.src = url;
+
+    /**create audio file */
+    const file = new File([blob], 'audio.mp3');
+    console.log({ file });
+    if (!file) throw new Error('No se pudo crear el archivo de audio.');
+
+    this.audio_file = file;
+    this.uploadFile(this.audio_file);
+  };
 }
